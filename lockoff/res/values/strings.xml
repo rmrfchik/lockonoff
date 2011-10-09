@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Metawatch Locker</string>
+    <string name="onoff">onoff</string>
+    <string name="metawatch_admin">Metawatch</string>
+    <string name="metawatch_admin_description">Force device locking when connection to Metawatch is lost</string>
+    <string name="adminWarning">This application requires ADMIN mode and uses password based locking</string>
+    <string name="password">Password</string>
+    <string name="repeat">Repeat Password</string>
+    <string name="goon">Set password</string>
+    <string name="setpassword">Change password</string>
+    <string name="enableButtonText">Enable</string>
+</resources>
