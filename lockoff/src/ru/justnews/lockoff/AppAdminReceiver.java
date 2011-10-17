@@ -18,11 +18,11 @@ public class AppAdminReceiver extends DeviceAdminReceiver{
     
     @Override
     public void onEnabled(Context context, Intent intent) {
-        showToast(context, "Metawatch locker: enabled");
+        showToast(context, "MetawatchLocker enabled");
     }
     
     @Override
     public void onDisabled(Context context, Intent intent) {
-        showToast(context, "Metawatch locker: disabled");
+        showToast(context, "MetawatchLocker disabled");
     }
 }
