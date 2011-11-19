@@ -19,8 +19,9 @@ public class MWMReceiver extends BroadcastReceiver {
 		if (mDPM.isAdminActive(new ComponentName("ru.justnews.lockoff","ru.justnews.lockoff.AppAdminReceiver"))) {
 			if (!state) {
 				mDPM.resetPassword(
-						PasswordMgmt.getPassword(context), 0);
-				mDPM.lockNow();
+						PrefMgmt.getPassword(context), 0);
+				if(PrefMgmt.isImmediateLock(context))
+					mDPM.lockNow();
 			} else {
 				mDPM.resetPassword(Const.EMPTY_PASSWORD, 0);
 				Log.i(Const.TAG, "Password locking disabled");

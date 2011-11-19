@@ -31,7 +31,7 @@ public class ChangePasswordActivity extends Activity {
 				} else {
 					Toast.makeText(ChangePasswordActivity.this, "FINISH",
 							Toast.LENGTH_LONG);
-					PasswordMgmt.setPassword(ChangePasswordActivity.this,
+					PrefMgmt.setPassword(ChangePasswordActivity.this,
 							password.getText().toString());
 					if (getParent() == null) {
 						setResult(Activity.RESULT_OK);

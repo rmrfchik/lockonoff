@@ -7,5 +7,7 @@ public class Const {
 	public static final int REQUEST_CHANGE_PASSWORD=1;
 	public static final int REQUEST_ADMIN_ENABLE = 2;
 	public static final String TAG="MWLocker";
-	public static final String EMPTY_PASSWORD=""; 
+	public static final String EMPTY_PASSWORD="";
+	public static final String PREFERENCES_IMMEDIATE_LOCK = "immediate";
+	static final int DIALOG_IMMEDIATE_HELP=1;
 }

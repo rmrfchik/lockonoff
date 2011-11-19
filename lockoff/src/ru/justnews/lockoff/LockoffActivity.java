@@ -1,6 +1,8 @@
 package ru.justnews.lockoff;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -8,10 +10,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.PopupWindow;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ToggleButton;
 
@@ -29,7 +35,7 @@ public class LockoffActivity extends Activity {
 
 		setContentView(R.layout.main);
 		ToggleButton onOff = (ToggleButton) findViewById(R.id.onOff);
-		updateButtonStatus();
+
 		onOff.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean state) {
@@ -44,14 +50,37 @@ public class LockoffActivity extends Activity {
 		Button setPassword = (Button) findViewById(R.id.setPassword);
 		setPassword.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View arg0) {
+			public void onClick(View arg0) {				
 				Intent intent = new Intent(LockoffActivity.this,
 						ChangePasswordActivity.class);
 				startActivityForResult(intent, Const.REQUEST_CHANGE_PASSWORD);
 			}
 		});
+		((CheckBox) findViewById(R.id.immediateLockSwitch)).setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View arg0) {
+				PrefMgmt.setImmediateLock(LockoffActivity.this, ((CheckBox) arg0).isChecked());
+			}
+		});
+		((Button) findViewById(R.id.immediateLockHelp)).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				showDialog(Const.DIALOG_IMMEDIATE_HELP);
+				
+//				PopupWindow pop=new PopupWindow(findViewById(R.layout.immediatelockhelp));
+				//pop.showAtLocation(findViewById(R.layout.main), Gravity.CENTER, 0, 0);
+			}
+		});
+		updateButtonStatus();		
 	}
-
+	
+	protected Dialog onCreateDialog(int id)
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.immediateLockLongHelp);
+		return builder.create();
+	}
 	private void disableAdmin() {
 		DevicePolicyManager mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 		mDPM.removeActiveAdmin(adminComponentName);
@@ -73,10 +102,12 @@ public class LockoffActivity extends Activity {
 		onOff.setEnabled(isPasswordSet());
 		DevicePolicyManager mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 		onOff.setChecked(mDPM.isAdminActive(adminComponentName));
+		CheckBox immediateLock=(CheckBox)findViewById(R.id.immediateLockSwitch);
+		immediateLock.setChecked(PrefMgmt.isImmediateLock(this));
 	}
 
 	private boolean isPasswordSet() {
-		return !PasswordMgmt.getPassword(this).equals("");
+		return !PrefMgmt.getPassword(this).equals("");
 	}
 
 	@Override

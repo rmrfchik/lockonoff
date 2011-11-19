@@ -10,4 +10,7 @@
     <string name="setpassword">Change password</string>
     <string name="enableButtonText">Enable</string>
     <string name="onoff">Locking/unlocking device</string>
+    <string name="immediateLock">Immediate lock</string>
+    <string name="immediateLockHelp">"What's this?"</string>
+    <string name="immediateLockLongHelp">If checked the phone will locked (i.e. screen switched off) immediatelly when connection has lost. If uncheked only password will be set.</string>
 </resources>

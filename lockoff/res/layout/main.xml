@@ -10,6 +10,10 @@
 <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout1">
 </LinearLayout>
 <Button android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/setPassword" android:text="@string/setpassword"></Button>
+<LinearLayout android:layout_width="match_parent" android:id="@+id/linearLayout2" android:layout_height="wrap_content">
+    <CheckBox android:text="@string/immediateLock" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/immediateLockSwitch"></CheckBox>
+    <Button android:text="@string/immediateLockHelp" android:layout_height="wrap_content" android:layout_gravity="right" android:layout_width="match_parent" android:id="@+id/immediateLockHelp"></Button>
+</LinearLayout>
 <ToggleButton android:layout_height="wrap_content" android:layout_gravity="center" android:id="@+id/onOff" android:layout_width="match_parent"></ToggleButton>
 
 </LinearLayout>
